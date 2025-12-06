@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #1f1f1f;
+            font-family: Arial;
+        }
+
+        .calculator {
+            background: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+        }
+
+        input {
+            width: 100%;
+            height: 60px;
+            font-size: 30px;
+            text-align: right;
+            border: none;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            padding: 10px;
+            background: #000;
+            color: #00ff00;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 60px;
+            font-size: 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #3a3a3a;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .equal {
+            background: #ff9500;
+        }
+
+        .footer {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 16px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <form method="POST">
+        <input type="text" id="expression" name="expression" value="{{ expression }}">
+        <input type="text" id="result" readonly value="{{ result }}" style="background:#222;color:#fff;font-size:20px">
+
+        <div class="buttons">
+
+            <button type="button" onclick="addValue('7')">7</button>
+            <button type="button" onclick="addValue('8')">8</button>
+            <button type="button" onclick="addValue('9')">9</button>
+            <button type="button" onclick="addValue('/')">÷</button>
+
+            <button type="button" onclick="addValue('4')">4</button>
+            <button type="button" onclick="addValue('5')">5</button>
+            <button type="button" onclick="addValue('6')">6</button>
+            <button type="button" onclick="addValue('*')">×</button>
+
+            <button type="button" onclick="addValue('1')">1</button>
+            <button type="button" onclick="addValue('2')">2</button>
+            <button type="button" onclick="addValue('3')">3</button>
+            <button type="button" onclick="addValue('-')">−</button>
+
+            <button type="button" onclick="addValue('0')">0</button>
+            <button type="button" onclick="addValue('.')">.</button>
+            <button type="submit" class="equal">=</button>
+            <button type="button" onclick="addValue('+')">+</button>
+
+            <!-- NEW BACKSPACE BUTTON -->
+            <button type="button" onclick="backspace()" style="background:#8e44ad">⌫</button>
+
+            <button type="button" onclick="clearInput()" style="grid-column: span 3;background:#c0392b">C</button>
+        </div>
+    </form>
+
+    <div class="footer">Made by Abi</div>
+</div>
+
+<script>
+function addValue(val) {
+    document.getElementById("expression").value += val;
+}
+
+function clearInput() {
+    document.getElementById("expression").value = "";
+}
+
+// NEW FUNCTION FOR BACKSPACE
+function backspace() {
+    let exp = document.getElementById("expression").value;
+    document.getElementById("expression").value = exp.slice(0, -1);
+}
+</script>
+
+</body>
+</html>
